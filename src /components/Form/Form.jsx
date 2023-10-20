@@ -5,7 +5,8 @@ import { Label, Button } from './Form.styled';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { contactsData } from 'redux/selector';
+import { addContact } from 'redux/contacts/operations';
+import { contactsData } from 'redux/contacts/selector';
 
 const idName = nanoid();
 const idNum = nanoid();
@@ -23,9 +24,8 @@ export const ContactForm = () => {
     if (isDuplicateContact) {
       alert(`${value.name} is already in contacts.`);
     } else {
-      dispatch(handleAddContact({ ...value }));
-
-      // resetForm();
+      dispatch(addContact({ ...value }));
+      actions.resetForm();
     }
   };
 

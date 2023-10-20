@@ -1,10 +1,6 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
-import {
-  fetchContacts,
-  addContact,
-  deleteContact,
-} from './operations';
+import { fetchContacts, addContact, deleteContact } from './operations';
 
 const initialState = {
   items: [],
@@ -12,11 +8,7 @@ const initialState = {
   error: null,
 };
 
-const customArrThunks = [
-  fetchContacts,
-  addContact,
-  deleteContact,
-];
+const customArrThunks = [fetchContacts, addContact, deleteContact];
 
 const status = {
   pending: 'pending',
@@ -50,8 +42,8 @@ const handleAddContact = (state, { payload }) => {
 };
 
 const handleDeleteContact = (state, action) => {
-          state.items = state.items.filter(contact => contact.id !== action.payload);
-        };
+  state.items = state.items.filter(contact => contact.id !== action.payload);
+};
 
 const contactsSlice = createSlice({
   name: 'contacts',
