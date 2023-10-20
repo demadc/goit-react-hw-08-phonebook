@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { contactsData } from 'redux/selector';
 
-
 const idName = nanoid();
 const idNum = nanoid();
 
@@ -15,19 +14,18 @@ export const ContactForm = () => {
   const dispatch = useDispatch();
   const currentContacts = useSelector(contactsData);
 
-  const handleAddContact = (value, { resetForm }) => {
-    
+  const handleAddContact = (value, actions) => {
+    console.log(actions);
     const isDuplicateContact = currentContacts.some(
       contact => contact.name.toLowerCase() === value.name.toLowerCase()
     );
 
     if (isDuplicateContact) {
       alert(`${value.name} is already in contacts.`);
-      
     } else {
-      dispatch(handleAddContact({...value})); 
+      dispatch(handleAddContact({ ...value }));
 
-      resetForm(); 
+      // resetForm();
     }
   };
 
@@ -69,4 +67,3 @@ export const ContactForm = () => {
     </Formik>
   );
 };
-
